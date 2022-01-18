@@ -1,0 +1,64 @@
+<body data-author="oduvan">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission
+    </div>
+    <div class="answer">
+        You need to compare two strings. One is the number as string, and another one is the same number as string, but without zeros ("0") in the end. 
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Which function I'm looking for?
+    </div>
+    <div class="answer">
+        <p>Those functions would be enough for you to solve this mission.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str</a> helps you to conver any object to string.</p>
+        <p><a target="+blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip</a> method of string object. Return a copy of the string with the leading and trailing characters removed.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len</a> is the function to find the length</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok. How can I use it then?
+    </div>
+    <div class="answer">
+        <p></p>
+        <pre class="brush: python">
+number = 5600
+text = str(number)
+text_length = len(text)
+# the variable text_length now contains length of the string text
+
+text_without_zeros = text.strip('0')
+text_length_without_zeros = len(text_without_zeros)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        One last question. How my final solution will look like?
+    </div>
+    <div class="answer">
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+    text = str(num)
+    text_length = len(text)
+    # the variable text_length now contains length of the string text
+
+    text_without_zeros = text.strip('0')
+    text_length_without_zeros = len(text_without_zeros)
+    
+    return text_length - text_length_without_zeros
+        </pre>
+        <p>Even simplier</p>
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+    n = str(num)
+    return len(n) - len(n.strip('0'))
+        </pre>
+    </div>
+</div>
+
+
+</body>
