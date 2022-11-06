@@ -1,0 +1,177 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>I have no idea how to start solving this mission.</i>
+    </div>
+    <div class="answer">
+        <p>
+            💡 The general idea is to divide number by 10 and check the quotient and reminder. if the reminder is 0 - increase pre-declared counter, re-assign number variable to the quotient and repeat the loop. If the reminder is 1 - return counter.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Ok, what should I start from?</i>
+    </div>
+    <div class="answer">
+        <p>
+            First, you should declare variable <b class="code">num_zeros</b> with initial value <b class="code">0</b> to count end zeros. Second, since you need to repeat some operations, until some condition is <b class="code">true</b>, <a target="_blank" href="https://www.w3schools.com/js/js_loop_while.asp">while loop</a> is optimal in this case. 
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (...) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            How to write correct condition for loop?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            You have to perform operations, if the reminder from the division of number by <b class="code">10</b> is equal <b class="code">0</b>. If it's not, it means that no end zeros left.
+        </p>
+        <p>
+            Find the reminder with <a target="_blank" href="https://www.w3schools.com/js/js_arithmetic.asp">modulus</a> operator. 
+        </p>
+        <pre class="brush: javascript">
+(a%10)
+        </pre>
+        <p>
+            If reminder is <b class="code">0</b> (what you need), as a condition it's considered as <b class="code">false</b> (loop is not work) and vise versa. To make loop works, you need to invert this connection - <b class="code">0</b> reminder should give <b class="code">true</b> condition. Do it with <a target="_blank" href="https://www.w3schools.com/js/js_comparisons.asp">logical operator ! (not)</a>.
+        </p>
+        <pre class="brush: javascript">
+(!(a%10))
+        </pre>
+        <p>
+            Here is the whole code so far.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    ...
+}      
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            I don't understand what to do inside loop.
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            You get inside loop if the condition is <b class="code">true</b> - the reminder from division (the last digit of number) equals <b class="code">0</b>. That's what you need to count, so increase <b class="code">num_zeros</b> with increment operator.  
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    num_zeros++;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            My loop looks infinite in case when number ends with zero. How to make it works correctly?  
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            When the number ends with <b class="code">0</b>, you need to "trim" this zero from the number. As i said in the first hint, you may do it by re-assigning you number variable to the quotient from the division number by <b class="code">10</b>. Since when you divide any number by <b class="code">10</b>, you visually move comma to the left, "trimming" the last digit (it's the reminder now). To get such quotient, round down the result of division number by <b class="code">10</b> with <a target="_blank" href="https://www.w3schools.com/jsref/jsref_floor.asp">Math.floor()</a> method.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+        <p>
+            One more step to avoid infinite loop is to take case of case when number equals <b class="code">0</b> initially. In this case condition for loop is <b class="code">true</b> initially and quotient always remains equal <b class="code">0</b>, making condition always <b class="code">true</b>.
+        </p>
+        <p>
+            Since, number 0 still has one "end" zero, in this case you should return <b class="code">1</b>, and do this checking before loop.
+        </p>
+        <pre class="brush: javascript">
+if (a==0)
+    return 1;
+
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>So, how my final solution should look like?</i>
+    </div>
+    <div class="answer">
+        <p>
+            You just need to wrap your code into function expression and return <b class="code">num_zeros</b>.
+        </p>
+        <p>Here is the whole solution:</p>
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    if (a==0) // or (!a)
+        
+        return 1;
+    
+    let num_zeros = 0;
+    while (!(a%10)) {
+        a = Math.floor(a/10);
+        num_zeros++;
+    }
+    return num_zeros;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Javascript Hero!</i>
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            Convert number into string, replace zeros from end with nothing and find difference of lengths of two string.
+        </p>
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    const s = String(a);
+
+    return s.length - s.replace(/0*$/, '').length;
+}
+        </pre>
+        <p>
+            This solution does the same as yours, but using anonymous function, recursion and ternary operator.
+        </p>
+        <pre class="brush: javascript">
+var endZeros = (a: number): number => !a ? 1: !(a%10) ? 1 + endZeros(a/10) : 0;
+
+        </pre>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Thanks! I know and understand more now! Everything works fine!</i>
+    </div>
+    <div class="answer">
+        👍Glad to hear it!
+    </div>
+</div>
+</body>
