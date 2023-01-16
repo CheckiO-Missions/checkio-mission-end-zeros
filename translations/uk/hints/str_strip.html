@@ -1,15 +1,21 @@
 <body data-author="Doppelok">
 <div class="question-answer">
     <div class="question">
-        Я не можу зрозуміти з чого мені розпочати...
+        <p>
+            Я не можу зрозуміти з чого мені розпочати...
+        </p>
     </div>
     <div class="answer">
-        Тобі потрібно порівняти два рядка. Один являє собою число у вигляді рядка, а інший являє собою те саме число у вигляді рядка, але вже без нулів ("0") у кінці.
+        <p>
+            Тобі потрібно порівняти два рядка. Один являє собою число у вигляді рядка, а інший являє собою те саме число у вигляді рядка, але вже без нулів ("0") у кінці.
+        </p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
-        Яку саме функцію мені потрібно використовувати?
+        <p>
+            Яку саме функцію мені потрібно використовувати?
+        </p>
     </div>
     <div class="answer">
         <p>Цих функцій буде більш ніж достатньо для тебе, для того щоб вирішити цю місію.</p>
@@ -20,7 +26,9 @@
 </div>
 <div class="question-answer">
     <div class="question">
-        Добре. Як мені використати ці функції для рішення місії?
+        <p>
+            Добре. Як мені використати ці функції для рішення місії?
+        </p>
     </div>
     <div class="answer">
         <p></p>
@@ -37,11 +45,14 @@ text_length_without_zeros = len(text_without_zeros)
 </div>
 <div class="question-answer">
     <div class="question">
-        Останнє запитання. Як має виглядати мій фінальний код?
+        <p>
+            Останнє запитання. Як має виглядати мій фінальний код?
+        </p>
     </div>
     <div class="answer">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
+
     text = str(num)
     text_length = len(text)
     # the variable text_length now contains length of the string text
@@ -54,12 +65,12 @@ def end_zeros(num: int) -> int:
         <p>Навіть простіше:</p>
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
+
     n = str(num)
+
     return len(n) - len(n.strip('0'))
         </pre>
     </div>
 </div>
-
-
 </body>
 
