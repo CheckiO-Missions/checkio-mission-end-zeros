@@ -121,6 +121,7 @@ while (!(a%10)) {
             Тобі лишилося обгортути свій код у вираз функції і повернути <b class="code">num_zeros</b>.
         </p>
         <p>Ось рішення повністю:</p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 function endZeros(a: number): number {
 
@@ -136,6 +137,7 @@ function endZeros(a: number): number {
     return num_zeros;
 }
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -148,6 +150,7 @@ function endZeros(a: number): number {
         <p>
             Конвертуй число у рядок, заміни нулі в кінці порожнім символом і знайди різницю довжин двох рядків.
         </p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 function endZeros(a: number): number {
 
@@ -156,13 +159,16 @@ function endZeros(a: number): number {
     return s.length - s.replace(/0*$/, '').length;
 }
         </pre>
+        </div>
         <p>
             Цей розв'язок робить те ж саме, що і твій, але використовуючи анонімну функцію, рекурсію і потрійний оператор.
         </p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 var endZeros = (a: number): number => !a ? 1: !(a%10) ? 1 + endZeros(a/10) : 0;
 
         </pre>
+        </div>
         <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</b></p>
     </div>
 </div>
