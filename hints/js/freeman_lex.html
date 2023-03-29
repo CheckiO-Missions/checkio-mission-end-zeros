@@ -121,6 +121,7 @@ while (!(a%10)) {
             You just need to wrap your code into function expression and return <b class="code">num_zeros</b>.
         </p>
         <p>Here is the whole solution:</p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 function endZeros(a: number): number {
 
@@ -136,6 +137,7 @@ function endZeros(a: number): number {
     return num_zeros;
 }
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -148,6 +150,7 @@ function endZeros(a: number): number {
         <p>
             Convert number into string, replace zeros from end with nothing and find difference of lengths of two string.
         </p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 function endZeros(a: number): number {
 
@@ -156,13 +159,16 @@ function endZeros(a: number): number {
     return s.length - s.replace(/0*$/, '').length;
 }
         </pre>
+        </div>
         <p>
             This solution does the same as yours, but using anonymous function, recursion and ternary operator.
         </p>
+        <div class="spoiler">
         <pre class="brush: javascript">
 var endZeros = (a: number): number => !a ? 1: !(a%10) ? 1 + endZeros(a/10) : 0;
 
         </pre>
+        </div>
         <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
     </div>
 </div>
