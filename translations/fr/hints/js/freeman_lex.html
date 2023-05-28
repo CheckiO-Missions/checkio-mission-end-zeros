@@ -1,0 +1,183 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Je n'ai aucune idée de la manière de commencer à résoudre cette mission.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 L'idée générale est de diviser un nombre par 10 et de vérifier le quotient et le rappel. Si le rappel est 0 - augmenter le compteur prédéclaré, réassigner la variable nombre au quotient et répéter la boucle. Si le rappel est différent de zéro, le compteur est retourné.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, par quoi dois-je commencer?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Tout d'abord, vous devez déclarer la variable <b class="code">num_zeros</b> avec la valeur initiale <b class="code">0</b> pour compter les zéros de fin. Deuxièmement, comme vous devez répéter certaines opérations jusqu'à ce qu'une condition soit remplie ( <b class="code">true</b>), <a target="_blank" href="https://www.w3schools.com/js/js_loop_while.asp">while loop</a> est la meilleure solution dans ce cas. 
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (...) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Comment écrire une condition correcte pour une boucle?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez effectuer des opérations si le rappel de la division du nombre par <b class="code">10</b> est égal à <b class="code">0</b>. Si ce n'est pas le cas, cela signifie qu'il n'y a plus de zéros de fin.
+        </p>
+        <p>
+            Trouvez le rappel avec l'opérateur <a target="_blank" href="https://www.w3schools.com/js/js_arithmetic.asp">modulus</a>. 
+        </p>
+        <pre class="brush: javascript">
+(a%10)
+        </pre>
+        <p>
+            Si le rappel est <b class="code">0</b> (ce dont vous avez besoin), il est considéré comme une condition <b class="code">false</b> (la boucle ne fonctionne pas) et vice versa. Pour que la boucle fonctionne, vous devez inverser cette connexion - le rappel <b class="code">0</b> doit donner la condition <b class="code">true</b>. Faites-le avec <a target="_blank" href="https://www.w3schools.com/js/js_comparisons.asp">logical operator! (not)</a>.
+        </p>
+        <pre class="brush: javascript">
+(!(a%10))
+        </pre>
+        <p>
+            Voici le code complet jusqu'à présent.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    ...
+}      
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Je ne comprends pas ce qu'il faut faire à l'intérieur de la boucle.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous entrez dans la boucle si la condition est <b class="code">true</b> - le rappel de la division (le dernier chiffre du nombre) est égal à <b class="code">0</b>. C'est ce que vous devez compter, donc augmentez <b class="code">num_zeros</b> avec l'opérateur d'incrémentation.  
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    num_zeros++;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Ma boucle semble infinie dans le cas où le nombre se termine par zéro. Comment faire pour qu'elle fonctionne correctement?  
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Lorsque le nombre se termine par <b class="code">0</b>, vous devez "couper" ce zéro du nombre. Comme je l'ai dit dans le premier indice, vous pouvez le faire en réassignant votre variable numérique au quotient de la division du nombre par <b class="code">10</b>. Puisque lorsque vous divisez un nombre par <b class="code">10</b>, vous déplacez visuellement la virgule vers la gauche, "coupant" le dernier chiffre (c'est le rappel maintenant). Pour obtenir ce quotient, arrondissez le résultat de la division d'un nombre par <b class="code">10</b> à l'aide de la méthode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_floor.asp">Math.floor()</a>.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+        <p>
+            Une étape supplémentaire pour éviter une boucle infinie est de prendre le cas où le nombre est égal à <b class="code">0</b> initialement. Dans ce cas, la condition de la boucle est <b class="code">true</b> initialement et le quotient reste toujours égal à <b class="code">0</b>, ce qui rend la condition toujours <b class="code">true</b>.
+        </p>
+        <p>
+            Puisque le nombre 0 a toujours un zéro "final", dans ce cas vous devriez retourner <b class="code">1</b>, et faire cette vérification avant la boucle.
+        </p>
+        <pre class="brush: javascript">
+if (a==0)
+    return 1;
+
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Alors, à quoi devrait ressembler ma solution finale?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de transformer votre code en une expression de fonction et de renvoyer <b class="code">num_zeros</b>.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    if (a==0) // or (!a)
+        
+        return 1;
+    
+    let num_zeros = 0;
+    while (!(a%10)) {
+        a = Math.floor(a/10);
+        num_zeros++;
+    }
+    return num_zeros;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Montrez-moi d'autres solutions!<br />
+        parce que je veux être un vrai 🥇 Javascript Hero!</p>
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Convertissez un nombre en chaîne de caractères, remplacez les zéros de la fin par rien et trouvez la différence de longueur de deux chaînes de caractères.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    const s = String(a);
+
+    return s.length - s.replace(/0*$/, '').length;
+}
+        </pre>
+        </div>
+        <p>
+            Cette solution fait la même chose que la vôtre, mais en utilisant une fonction anonyme, la récursion et l'opérateur ternaire.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+var endZeros = (a: number): number =>!a? 1:!(a%10)? 1 + endZeros(a/10): 0;
+
+        </pre>
+        </div>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!</p>
+    </div>
+    <div class="answer">
+        👍Glad to hear it!
+    </div>
+</div>
+</body>
