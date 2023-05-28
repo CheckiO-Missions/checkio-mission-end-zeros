@@ -1,0 +1,79 @@
+<body data-author="oduvan">
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Je n'ai aucune idée de la manière de résoudre cette mission
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez comparer deux chaînes de caractères. L'une est le même nombre que la chaîne, et l'autre est le même nombre que la chaîne, mais sans les zéros ("0") à la fin. 
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Quelle fonction dois-je rechercher?
+        </p>
+    </div>
+    <div class="answer">
+        <p>Ces fonctions vous suffiront pour résoudre cette mission.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> vous aide à convertir n'importe quel objet en chaîne de caractères.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip()</a> méthode de conversion d'un objet de type chaîne de caractères. Elle renvoie une copie de la chaîne de caractères dont les caractères de début et de fin ont été supprimés.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> est la fonction qui permet de trouver la longueur</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            D'accord. Comment puis-je l'utiliser alors?
+        </p>
+    </div>
+    <div class="answer">
+        <p></p>
+        <pre class="brush: python">
+number = 5600
+text = str(number)
+text_length = len(text)
+# the variable text_length now contains length of the string text
+
+text_without_zeros = text.strip('0')
+text_length_without_zeros = len(text_without_zeros)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Une dernière question. A quoi ressemblera ma solution finale?
+        </p>
+    </div>
+    <div class="answer">
+        <div class="spoiler">
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+
+    text = str(num)
+    text_length = len(text)
+    # the variable text_length now contains length of the string text
+
+    text_without_zeros = text.strip('0')
+    text_length_without_zeros = len(text_without_zeros)
+    
+    return text_length - text_length_without_zeros
+        </pre>
+        </div>
+        <p>Encore plus simple</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+
+    n = str(num)
+
+    return len(n) - len(n.strip('0'))
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
