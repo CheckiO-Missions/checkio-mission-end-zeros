@@ -1,23 +1,23 @@
 <!-- Describe task in general -->
 
 <p>
-    Dowiedz się, ile zer znajduje się na końcu liczby.
+    Proszę sprawdzić, ile zer ma dana liczba na końcu.
 </p>
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Wejście: </strong> Dodatni Int
+   <strong>Dane wejściowe:</strong> Dodatnia liczba całkowita <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.
 </p>
 
 <p>
-    <strong>Wyjście: </strong> Int. 
+   <strong>Wyjście:</strong> Liczba całkowita <span>{% if is_js %}(number){% else %}(int){% endif %}</span>. 
 </p>
 
 
 <!-- Give some usage examples -->
 <div class="for_info_only">
     <p>
-        <strong>Przykład:</strong>
+        <strong>Przykłady:</strong>
     </p>
 
 <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
