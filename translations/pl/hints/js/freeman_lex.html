@@ -1,0 +1,183 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Nie mam pojęcia, jak zacząć rozwiązywać tę misję.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Ogólny pomysł polega na podzieleniu liczby przez 10 i sprawdzeniu ilorazu i przypomnienia. jeśli przypomnienie wynosi 0 - zwiększ wcześniej zadeklarowany licznik, ponownie przypisz zmienną liczba do ilorazu i powtórz pętlę. Jeśli przypomnienie nie wynosi zero - proszę zwrócić licznik.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, od czego powinienem zacząć?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Po pierwsze, powinien Pan zadeklarować zmienną <b class="code">num_zeros</b> z wartością początkową <b class="code">0</b>, aby zliczać końcowe zera. Po drugie, ponieważ musi Pan powtarzać pewne operacje, dopóki jakiś warunek nie zostanie spełniony <b class="code">true</b>, <a target="_blank" href="https://www.w3schools.com/js/js_loop_while.asp">while loop</a> jest optymalne w tym przypadku. 
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (...) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Jak napisać poprawny warunek dla pętli?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Proszę wykonać operacje, jeśli wynik dzielenia liczby przez <b class="code">10</b> jest równy <b class="code">0</b>. Jeśli nie jest, oznacza to, że nie pozostały żadne końcowe zera.
+        </p>
+        <p>
+            Proszę znaleźć resztę za pomocą operatora <a target="_blank" href="https://www.w3schools.com/js/js_arithmetic.asp">modulus</a>. 
+        </p>
+        <pre class="brush: javascript">
+(a%10)
+        </pre>
+        <p>
+            Jeśli przypomnienie to <b class="code">0</b> (to, czego Pan potrzebuje), jako warunek jest uważane za <b class="code">false</b> (pętla nie działa) i odwrotnie. Aby pętla działała, należy odwrócić to połączenie - przypomnienie <b class="code">0</b> powinno dać warunek <b class="code">true</b>. Proszę to zrobić z <a target="_blank" href="https://www.w3schools.com/js/js_comparisons.asp">logical operator! (not)</a>.
+        </p>
+        <pre class="brush: javascript">
+(!(a%10))
+        </pre>
+        <p>
+            Oto cały dotychczasowy kod.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    ...
+}      
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Nie rozumiem, co zrobić wewnątrz pętli.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Dostanie się Pan do środka pętli, jeśli warunek to <b class="code">true</b> - przypomnienie z dzielenia (ostatnia cyfra liczby) równa się <b class="code">0</b>. To właśnie trzeba policzyć, więc proszę zwiększyć <b class="code">num_zeros</b> za pomocą operatora inkrementacji.  
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    num_zeros++;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Moja pętla wygląda na nieskończoną w przypadku, gdy liczba kończy się zerem. Jak sprawić, by działała poprawnie?  
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Kiedy liczba kończy się na <b class="code">0</b>, musi Pan "obciąć" to zero z liczby. Jak wspomniałem w pierwszej wskazówce, można to zrobić, ponownie przypisując zmienną liczbową do ilorazu z dzielenia liczby przez <b class="code">10</b>. Ponieważ dzieląc dowolną liczbę przez <b class="code">10</b>, wizualnie przesuwa Pan przecinek w lewo, "obcinając" ostatnią cyfrę (teraz jest to przypomnienie). Aby uzyskać taki iloraz, proszę zaokrąglić w dół wynik dzielenia liczby przez <b class="code">10</b> metodą <a target="_blank" href="https://www.w3schools.com/jsref/jsref_floor.asp">Math.floor()</a>.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+        <p>
+            Kolejnym krokiem do uniknięcia nieskończonej pętli jest wzięcie pod uwagę przypadku, gdy liczba początkowo jest równa <b class="code">0</b>. W tym przypadku warunek dla pętli wynosi początkowo <b class="code">true</b>, a iloraz zawsze pozostaje równy <b class="code">0</b>, dzięki czemu warunek zawsze wynosi <b class="code">true</b>.
+        </p>
+        <p>
+            Ponieważ liczba 0 nadal ma jedno "końcowe" zero, w tym przypadku należy zwrócić <b class="code">1</b> i wykonać to sprawdzenie przed pętlą.
+        </p>
+        <pre class="brush: javascript">
+if (a==0)
+    return 1;
+
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Jak więc powinno wyglądać moje ostateczne rozwiązanie?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy zawinąć kod w wyrażenie funkcji i zwrócić <b class="code">num_zeros</b>.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    if (a==0) // or (!a)
+        
+        return 1;
+    
+    let num_zeros = 0;
+    while (!(a%10)) {
+        a = Math.floor(a/10);
+        num_zeros++;
+    }
+    return num_zeros;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwym 🥇 bohaterem Javascript!</p>
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę pobrać!</p>
+        <p>
+            Proszę przekonwertować liczbę na ciąg, zastąpić zera na końcu niczym i znaleźć różnicę długości dwóch ciągów.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    const s = String(a);
+
+    return s.length - s.replace(/0*$/, '').length;
+}
+        </pre>
+        </div>
+        <p>
+            To rozwiązanie robi to samo co Pańskie, ale używa funkcji anonimowej, rekurencji i operatora trójargumentowego.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+var endZeros = (a: number): number =>!a? 1:!(a%10)? 1 + endZeros(a/10): 0;
+
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa dobrze!</p>
+    </div>
+    <div class="answer">
+        miło mi to słyszeć!
+    </div>
+</div>
+</body>
