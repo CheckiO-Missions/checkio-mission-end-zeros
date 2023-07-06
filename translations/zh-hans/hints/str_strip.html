@@ -1,0 +1,79 @@
+<body data-author="oduvan">
+<div class="question-answer">
+    <div class="question">
+        <p>
+            我不知道如何开始解决这个任务
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            你需要比较两个字符串。一个是字符串中的数字，另一个是与字符串相同的数字，但最后没有零（"0"）。 
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            我想找哪个函数？
+        </p>
+    </div>
+    <div class="answer">
+        <p>这些函数足以让你解决这个任务。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> 帮助你将任何对象转换为字符串。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip()</a> 方法的字符串对象。返回一个去除前导和尾部字符的字符串的副本。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> 是查找长度的函数</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            好的。那我如何使用它呢？
+        </p>
+    </div>
+    <div class="answer">
+        <p></p>
+        <pre class="brush: python">
+number = 5600
+text = str(number)
+text_length = len(text)
+# the variable text_length now contains length of the string text
+
+text_without_zeros = text.strip('0')
+text_length_without_zeros = len(text_without_zeros)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            最后一个问题。我的最终解决方案会是什么样子的？
+        </p>
+    </div>
+    <div class="answer">
+        <div class="spoiler">
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+
+    text = str(num)
+    text_length = len(text)
+    # the variable text_length now contains length of the string text
+
+    text_without_zeros = text.strip('0')
+    text_length_without_zeros = len(text_without_zeros)
+    
+    return text_length - text_length_without_zeros
+        </pre>
+        </div>
+        <p>甚至更简单</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def end_zeros(num: int) -> int:
+
+    n = str(num)
+
+    return len(n) - len(n.strip('0'))
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
