@@ -1,0 +1,183 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>我不知道如何开始解决这个任务。</p>
+    </div>
+    <div class="answer">
+        <p>
+            一般的想法是用数字除以10，然后检查商和提醒。如果提醒为0--增加预先声明的计数器，重新将数字变量分配给商，并重复循环。如果提醒不为零--返回计数器。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>好的，我应该从什么开始？</p>
+    </div>
+    <div class="answer">
+        <p>
+            首先，你应该声明变量<b class="code">num_zeros</b> ，初始值为<b class="code">0</b> ，以计数结束零。其次，由于你需要重复一些操作，直到某些条件是<b class="code">true</b> ，在这种情况下，<a target="_blank" href="https://www.w3schools.com/js/js_loop_while.asp">while loop</a> 是最佳的。 
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (...) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            如何编写正确的循环条件？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            你必须执行操作，如果数字除以<b class="code">10</b> 的提醒等于<b class="code">0</b> 。如果不是，就意味着没有末尾的零了。
+        </p>
+        <p>
+            用<a target="_blank" href="https://www.w3schools.com/js/js_arithmetic.asp">modulus</a> 运算符找到提醒。 
+        </p>
+        <pre class="brush: javascript">
+(a%10)
+        </pre>
+        <p>
+            如果提醒是<b class="code">0</b> （你需要的），作为一个条件，它被认为是<b class="code">false</b> （循环不工作），反之亦然。为了使循环工作，你需要颠倒这种联系--<b class="code">0</b> 提醒应该给出<b class="code">true</b> 条件。用<a target="_blank" href="https://www.w3schools.com/js/js_comparisons.asp">logical operator! (not)</a> 做到这一点。
+        </p>
+        <pre class="brush: javascript">
+(!(a%10))
+        </pre>
+        <p>
+            以下是到目前为止的整个代码。
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    ...
+}      
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            我不明白在循环中要做什么。
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            如果条件是<b class="code">true</b> ，你就会进入循环 - 除法后的提醒（数字的最后一位）等于<b class="code">0</b> 。这就是你需要计算的东西，所以用增量运算符增加<b class="code">num_zeros</b> 。  
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    num_zeros++;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            当数字以0结束时，我的循环看起来是无限的。怎样才能使它正常工作？  
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            当数字以<b class="code">0</b> 结尾时，你需要从数字中 "修剪 "这个零。正如我在第一条提示中所说的，你可以通过将你的数字变量重新分配给除以<b class="code">10</b> 的商来做到这一点。因为当你用任何数字除以<b class="code">10</b> ，你可以直观地将逗号移到左边，"修剪 "最后一位数字（现在是提醒）。为了得到这样的商，用<a target="_blank" href="https://www.w3schools.com/jsref/jsref_floor.asp">Math.floor()</a> 方法将除以<b class="code">10</b> 的结果四舍五入。
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+        <p>
+            避免无限循环的另一个步骤是，当数字最初等于<b class="code">0</b> 的情况下。在这种情况下，循环的条件是<b class="code">true</b> ，商总是等于<b class="code">0</b> ，使条件总是<b class="code">true</b> 。
+        </p>
+        <p>
+            因为，数字0仍然有一个 "结束 "的零，在这种情况下，你应该返回<b class="code">1</b> ，并在循环之前做这个检查。
+        </p>
+        <pre class="brush: javascript">
+if (a==0)
+    return 1;
+
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>那么，我的最终解决方案应该是什么样子的呢？</p>
+    </div>
+    <div class="answer">
+        <p>
+            你只需要将你的代码包装成函数表达式并返回<b class="code">num_zeros</b> 。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    if (a==0) // or (!a)
+        
+        return 1;
+    
+    let num_zeros = 0;
+    while (!(a%10)) {
+        a = Math.floor(a/10);
+        num_zeros++;
+    }
+    return num_zeros;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>告诉我更多的解决方案!<br />
+        因为我想成为一个真正的🥇 Javascript英雄!</p>
+    </div>
+    <div class="answer">
+        <p>当然，抓住它!</p>
+        <p>
+            将数字转换为字符串，将末尾的零替换为零，并找出两个字符串的长度之差。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    const s = String(a);
+
+    return s.length - s.replace(/0*$/, '').length;
+}
+        </pre>
+        </div>
+        <p>
+            这个解决方案和你的一样，但使用了匿名函数、递归和三元操作符。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+var endZeros = (a: number): number =>!a? 1:!(a%10)? 1 + endZeros(a/10): 0;
+
+        </pre>
+        </div>
+        <p>点击任务菜单上的<b>Best Solutions</b> ，可以看到很多其他有趣的解决方案!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>谢谢!我现在知道并理解了更多!一切工作都很顺利!</p>
+    </div>
+    <div class="answer">
+        很高兴听到这个消息!
+    </div>
+</div>
+</body>
