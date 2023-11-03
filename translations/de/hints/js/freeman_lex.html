@@ -1,0 +1,183 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Die allgemeine Idee ist, eine Zahl durch 10 zu teilen und den Quotienten und die Erinnerung zu überprüfen. Wenn die Erinnerung 0 ist - erhöhen Sie den zuvor deklarierten Zähler, weisen Sie die Variable Zahl erneut dem Quotienten zu und wiederholen Sie die Schleife. Wenn die Erinnerung nicht Null ist - geben Sie den Zähler zurück.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, womit soll ich anfangen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Zunächst sollten Sie die Variable <b class="code">num_zeros</b> mit dem Anfangswert <b class="code">0</b> deklarieren, um die Endnullen zu zählen. Zweitens, da Sie einige Operationen wiederholen müssen, bis eine Bedingung <b class="code">true</b> erfüllt ist, ist <a target="_blank" href="https://www.w3schools.com/js/js_loop_while.asp">while loop</a> in diesem Fall optimal. 
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (...) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie schreibt man die richtige Bedingung für eine Schleife?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen Operationen durchführen, wenn die Erinnerung an die Division der Zahl durch <b class="code">10</b> gleich <b class="code">0</b> ist. Wenn dies nicht der Fall ist, bedeutet dies, dass keine Endnullen mehr übrig sind.
+        </p>
+        <p>
+            Finden Sie die Erinnerung mit dem <a target="_blank" href="https://www.w3schools.com/js/js_arithmetic.asp">modulus</a> Operator. 
+        </p>
+        <pre class="brush: javascript">
+(a%10)
+        </pre>
+        <p>
+            Wenn die Erinnerung <b class="code">0</b> ist (was Sie brauchen), wird sie als Bedingung als <b class="code">false</b> betrachtet (die Schleife funktioniert nicht) und umgekehrt. Damit die Schleife funktioniert, müssen Sie diese Verbindung umkehren - <b class="code">0</b> Erinnerung sollte <b class="code">true</b> Bedingung ergeben. Tun Sie dies mit <a target="_blank" href="https://www.w3schools.com/js/js_comparisons.asp">logical operator! (not)</a>.
+        </p>
+        <pre class="brush: javascript">
+(!(a%10))
+        </pre>
+        <p>
+            Hier ist der gesamte bisherige Code.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    ...
+}      
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Ich verstehe nicht, was ich innerhalb der Schleife tun soll.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie gelangen innerhalb der Schleife, wenn die Bedingung <b class="code">true</b> lautet - die Erinnerung aus der Division (die letzte Ziffer der Zahl) ist gleich <b class="code">0</b>. Das ist es, was Sie zählen müssen, also erhöhen Sie <b class="code">num_zeros</b> mit dem Inkrement-Operator.  
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    num_zeros++;
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Meine Schleife sieht unendlich aus, wenn die Zahl mit Null endet. Wie kann ich es richtig machen?  
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Wenn die Zahl mit <b class="code">0</b> endet, müssen Sie diese Null von der Zahl "abschneiden". Wie ich im ersten Tipp sagte, können Sie dies tun, indem Sie Ihre Zahlenvariable dem Quotienten aus der Divisionszahl durch <b class="code">10</b> neu zuordnen. Denn wenn Sie eine beliebige Zahl durch <b class="code">10</b> dividieren, verschieben Sie das Komma visuell nach links und "stutzen" so die letzte Ziffer (das ist jetzt die Erinnerung). Um einen solchen Quotienten zu erhalten, runden Sie das Ergebnis der Division einer Zahl durch <b class="code">10</b> mit der Methode <a target="_blank" href="https://www.w3schools.com/jsref/jsref_floor.asp">Math.floor()</a> ab.
+        </p>
+        <pre class="brush: javascript">
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+        <p>
+            Ein weiterer Schritt zur Vermeidung einer Endlosschleife besteht darin, den Fall zu berücksichtigen, dass die Zahl anfangs gleich <b class="code">0</b> ist. In diesem Fall ist die Bedingung für die Schleife zunächst <b class="code">true</b> und der Quotient bleibt immer gleich <b class="code">0</b>, so dass die Bedingung immer <b class="code">true</b> ist.
+        </p>
+        <p>
+            Da die Zahl 0 noch eine "Endnull" hat, sollten Sie in diesem Fall <b class="code">1</b> zurückgeben und diese Überprüfung vor der Schleife durchführen.
+        </p>
+        <pre class="brush: javascript">
+if (a==0)
+    return 1;
+
+let num_zeros = 0;
+while (!(a%10)) {
+    a = Math.floor(a/10);
+    num_zeros++;
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Wie sollte also meine endgültige Lösung aussehen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur Ihren Code in einen Funktionsausdruck verpacken und <b class="code">num_zeros</b> zurückgeben.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    if (a==0) // or (!a)
+        
+        return 1;
+    
+    let num_zeros = 0;
+    while (!(a%10)) {
+        a = Math.floor(a/10);
+        num_zeros++;
+    }
+    return num_zeros;
+}
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Javascript-Held sein!</p>
+    </div>
+    <div class="answer">
+        <p>Klar, schnappen Sie es sich!</p>
+        <p>
+            Konvertieren Sie eine Zahl in einen String, ersetzen Sie die Nullen am Ende durch nichts und finden Sie die Differenz der Längen zweier Strings.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function endZeros(a: number): number {
+
+    const s = String(a);
+
+    return s.length - s.replace(/0*$/, '').length;
+}
+        </pre>
+        </div>
+        <p>
+            Diese Lösung macht dasselbe wie Ihre, verwendet aber anonyme Funktionen, Rekursion und ternäre Operatoren.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+var endZeros = (a: number): number =>!a? 1:!(a%10)? 1 + endZeros(a/10): 0;
+
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert einwandfrei!</p>
+    </div>
+    <div class="answer">
+        👍Gut zu wissen!
+    </div>
+</div>
+</body>
