@@ -33,10 +33,9 @@
     <div class="answer">
         <p></p>
         <pre class="brush: python">
-number = 5600
 text = str(number)
 text_length = len(text)
-# la variable text_length contient maintenant la longueur de la chaîne de caractères texte
+# the variable text_length now contains length of the string text
 
 text_without_zeros = text.strip('0')
 text_length_without_zeros = len(text_without_zeros)
@@ -50,13 +49,14 @@ text_length_without_zeros = len(text_without_zeros)
         </p>
     </div>
     <div class="answer">
+        <p>Vous devez maintenant calculer la différence entre la longueur du texte avec des zéros et la longueur du texte sans zéros. Vous devez donc insérer votre code dans une expression de fonction et renvoyer la différence calculée, qui est votre résultat. Il est fortement recommandé d'utiliser des indications de type pour l'argument d'entrée et la valeur de sortie.</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
 
     text = str(num)
     text_length = len(text)
-    # la variable text_length contient maintenant la longueur de la chaîne de caractères texte
+    # the variable text_length now contains length of the string text
 
     text_without_zeros = text.strip('0')
     text_length_without_zeros = len(text_without_zeros)
@@ -64,7 +64,7 @@ def end_zeros(num: int) -> int:
     return text_length - text_length_without_zeros
         </pre>
         </div>
-        <p>Encore plus simple</p>
+        <p>Une version encore plus simple sans déclaration de variables inutiles:</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
