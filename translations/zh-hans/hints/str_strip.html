@@ -2,38 +2,37 @@
 <div class="question-answer">
     <div class="question">
         <p>
-            我不知道如何开始解决这个任务
+            我不知道如何开始解决这项任务
         </p>
     </div>
     <div class="answer">
         <p>
-            你需要比较两个字符串。一个是字符串中的数字，另一个是与字符串相同的数字，但最后没有零（"0"）。 
+            您需要比较两个字符串。一个是与字符串相同的数字，另一个是与字符串相同的数字，但末尾没有零（"0"）。 
         </p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
         <p>
-            我想找哪个函数？
+            我要找哪个函数？
         </p>
     </div>
     <div class="answer">
-        <p>这些函数足以让你解决这个任务。</p>
-        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> 帮助你将任何对象转换为字符串。</p>
-        <p><a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip()</a> 方法的字符串对象。返回一个去除前导和尾部字符的字符串的副本。</p>
-        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> 是查找长度的函数</p>
+        <p>这些函数就足够你解决这个任务了。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> 帮助您将任何对象转换为字符串。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip()</a> 字符串对象的方法。返回去掉前导字符和尾部字符的字符串副本。</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> 是查找字符串长度的函数</p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
         <p>
-            好的。那我如何使用它呢？
+            好的。那我该如何使用它呢？
         </p>
     </div>
     <div class="answer">
         <p></p>
         <pre class="brush: python">
-number = 5600
 text = str(number)
 text_length = len(text)
 # the variable text_length now contains length of the string text
@@ -46,10 +45,11 @@ text_length_without_zeros = len(text_without_zeros)
 <div class="question-answer">
     <div class="question">
         <p>
-            最后一个问题。我的最终解决方案会是什么样子的？
+            最后一个问题。我的最终解决方案是什么样的？
         </p>
     </div>
     <div class="answer">
+        <p>现在，您需要计算带 0 的文本长度与不带 0 的文本长度之间的差值。因此，将代码封装到函数表达式中，然后返回计算出的差值，这就是结果。强烈建议对输入参数和输出值使用类型提示。</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
@@ -64,7 +64,7 @@ def end_zeros(num: int) -> int:
     return text_length - text_length_without_zeros
         </pre>
         </div>
-        <p>甚至更简单</p>
+        <p>更简单的版本无需声明不必要的变量：</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
