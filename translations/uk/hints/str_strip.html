@@ -1,39 +1,38 @@
-<body data-author="Doppelok">
+<body data-author="oduvan">
 <div class="question-answer">
     <div class="question">
         <p>
-            Я не можу зрозуміти з чого мені розпочати...
+            Я не маю жодного уявлення, як почати вирішувати цю місію
         </p>
     </div>
     <div class="answer">
         <p>
-            Тобі потрібно порівняти два рядка. Один являє собою число у вигляді рядка, а інший являє собою те саме число у вигляді рядка, але вже без нулів ("0") у кінці.
+            Вам потрібно порівняти два рядки. Один з них - число у вигляді рядка, а інший - таке ж число у вигляді рядка, але без нулів ("0") у кінці. 
         </p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
         <p>
-            Яку саме функцію мені потрібно використовувати?
+            Яку функцію я шукаю?
         </p>
     </div>
     <div class="answer">
-        <p>Цих функцій буде більш ніж достатньо для тебе, для того щоб вирішити цю місію.</p>
-        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> допоможе тобі конвертувати будь який об'єкт у рядок.</p>
+        <p>Вам буде достатньо цих функцій, щоб розв'язати цю задачу.</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#str">str()</a> допомагає конвертувати будь-який об'єкт у рядок.</p>
         <p><a target="_blank" href="https://docs.python.org/3/library/stdtypes.html#str.strip">str.strip()</a> метод рядкового об'єкту. Повертає копію рядка з видаленими початковими та кінцевими символами.</p>
-        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> це функція для пошуку довжини об'єкту (якщо об'єкт підтримує вимір довжини).</p>
+        <p><a target="_blank" href="https://docs.python.org/3/library/functions.html#len">len()</a> функція для знаходження довжини</p>
     </div>
 </div>
 <div class="question-answer">
     <div class="question">
         <p>
-            Добре. Як мені використати ці функції для рішення місії?
+            Гаразд. Як її використовувати?
         </p>
     </div>
     <div class="answer">
         <p></p>
         <pre class="brush: python">
-number = 5600
 text = str(number)
 text_length = len(text)
 # the variable text_length now contains length of the string text
@@ -46,10 +45,11 @@ text_length_without_zeros = len(text_without_zeros)
 <div class="question-answer">
     <div class="question">
         <p>
-            Останнє запитання. Як має виглядати мій фінальний код?
+            І останнє питання. Як буде виглядати моє остаточне рішення?
         </p>
     </div>
     <div class="answer">
+        <p>Тепер вам потрібно обчислити різницю між довжиною тексту з нулями і довжиною тексту без нулів. Тому оберніть ваш код у вираз функції і поверніть цю обчислену різницю, яка і буде вашим результатом. Наполегливо рекомендується використовувати підказки типів для вхідного аргументу та вихідного значення.</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
@@ -60,11 +60,11 @@ def end_zeros(num: int) -> int:
 
     text_without_zeros = text.strip('0')
     text_length_without_zeros = len(text_without_zeros)
-
+    
     return text_length - text_length_without_zeros
         </pre>
         </div>
-        <p>Навіть простіше:</p>
+        <p>Ще простіший варіант без оголошення зайвих змінних:</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
@@ -77,4 +77,3 @@ def end_zeros(num: int) -> int:
     </div>
 </div>
 </body>
-
