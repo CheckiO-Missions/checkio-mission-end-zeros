@@ -33,7 +33,6 @@
     <div class="answer">
         <p></p>
         <pre class="brush: python">
-number = 5600
 text = str(number)
 text_length = len(text)
 # the variable text_length now contains length of the string text
@@ -50,6 +49,7 @@ text_length_without_zeros = len(text_without_zeros)
         </p>
     </div>
     <div class="answer">
+        <p>Teraz musi Pan obliczyć różnicę między długością tekstu z zerami a długością tekstu bez zer. Proszę więc zawinąć swój kod w wyrażenie funkcyjne i zwrócić obliczoną różnicę, która jest wynikiem. Zdecydowanie zaleca się używanie podpowiedzi typu dla argumentu wejściowego i wartości wyjściowej.</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
@@ -64,7 +64,7 @@ def end_zeros(num: int) -> int:
     return text_length - text_length_without_zeros
         </pre>
         </div>
-        <p>Jeszcze prościej</p>
+        <p>Jeszcze prostsza wersja bez deklarowania niepotrzebnych zmiennych:</p>
         <div class="spoiler">
         <pre class="brush: python">
 def end_zeros(num: int) -> int:
